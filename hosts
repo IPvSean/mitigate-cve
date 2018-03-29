@@ -1,0 +1,16 @@
+localhost
+
+[cisco]
+rtr1 ansible_host=34.233.128.183
+rtr2 ansible_host=34.202.237.22
+
+[cisco:vars]
+ansible_network_os=ios
+ansible_user=cisco
+ansible_password=cisco
+ansible_become=yes
+ansible_become_method=enable
+ansible_become_pass=ANSIBLE
+
+[network:children]
+cisco

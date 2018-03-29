@@ -31,6 +31,10 @@
           - show version
       register: showvstack
 
+    - name: debug This
+      debug:
+        var: showvstack
+
     - name: Check to make sure Cisco's Smart Install Client Feature is Enabled
       assert:
         that:

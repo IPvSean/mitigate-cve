@@ -19,23 +19,19 @@
       register: showvstack
       ignore_errors: yes
 
-    - name: Check to make if this errors, it is because vstack doesn't exist
+    ## Uncomment this if you want to see the output of the show vstack config
+    # - name: output showvstack to terminal window
+    #   debug:
+    #     msg: >
+    #       {{showvstack}}
+
+    - name: Check to make if the ios_command errors, it is because vstack doesn't exist
       assert:
         that:
           - "'Invalid input detected' in showvstack.module_stderr"
         when:
           - showvstack.msg is defined
           - showvstack.msg == 'MODULE FAILURE'
-
-    - name: run show vstack config
-      ios_command:
-        commands:
-          - show version
-      register: showvstack
-
-    - name: debug This
-      debug:
-        var: showvstack
 
     - name: Check to make sure Cisco's Smart Install Client Feature is not enabled (1/2)
       assert:

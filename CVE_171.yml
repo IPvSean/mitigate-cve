@@ -19,7 +19,8 @@
       register: showvstack
       ignore_errors: yes
 
-    - name: Check to make sure
+    - name: Check to make if this errors, it is because vstack doesn't exist
       assert:
         that:
           - "'Invalid input detected' in showvstack.module_stderr"
+        when: showvstack.msg == 'MODULE FAILURE'

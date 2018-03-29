@@ -6,11 +6,11 @@
       ios_facts:
         gather_subset: all
 
-    - name: gather facts for ios platforms
+    - name: run show vstack config
       ios_command:
         commands:
           - show vstack config
-        register: showvstack
+      register: showvstack
 
     - name: output facts to terminal window
       debug:

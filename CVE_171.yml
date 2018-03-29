@@ -23,9 +23,3 @@
       assert:
         that:
           - "'Invalid input detected' in showvstack
-
-    # - name: Check to make sure
-    #   assert:
-    #     that:
-    #       - "'Role: Client (SmartInstall enabled)' not in showvstack"
-    #       - "'Oper Mode: Enabled' not in showvstack'

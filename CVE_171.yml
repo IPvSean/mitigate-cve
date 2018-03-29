@@ -6,6 +6,14 @@
       ios_facts:
         gather_subset: all
 
+    - name: gather facts for ios platforms
+      ios_command:
+        commands:
+          - show vstack config
+        register: showvstack
+
     - name: output facts to terminal window
       debug:
-        msg: The device {{ansible_net_hostname}} is model {{ansible_net_model}} running {{ansible_net_version}}
+        msg: >
+          Device {{ansible_net_hostname}}, model {{ansible_net_model}}, running {{ansible_net_version}},
+          {{showvstack}}

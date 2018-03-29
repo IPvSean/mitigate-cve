@@ -6,6 +6,12 @@
       ios_facts:
         gather_subset: all
 
+    - name: output facts to terminal window
+      debug:
+        msg: >
+          Device {{ansible_net_hostname}}, model {{ansible_net_model}}, running {{ansible_net_version}}
+
+    ## We will ignore errors, because on some IOS platforms this command does not exist and will error out
     - name: run show vstack config
       ios_command:
         commands:
@@ -13,8 +19,13 @@
       register: showvstack
       ignore_errors: yes
 
-    - name: output facts to terminal window
-      debug:
-        msg: >
-          Device {{ansible_net_hostname}}, model {{ansible_net_model}}, running {{ansible_net_version}},
-          {{showvstack}}
+    - name: Check to make sure
+      assert:
+        that:
+          - "'Invalid input detected' in showvstack
+
+    # - name: Check to make sure
+    #   assert:
+    #     that:
+    #       - "'Role: Client (SmartInstall enabled)' not in showvstack"
+    #       - "'Oper Mode: Enabled' not in showvstack'

@@ -22,4 +22,4 @@
     - name: Check to make sure
       assert:
         that:
-          - "'Invalid input detected' in showvstack"
+          - "'Invalid input detected' in showvstack.module_stderr"

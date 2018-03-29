@@ -11,6 +11,7 @@
         commands:
           - show vstack config
       register: showvstack
+      ignore_errors: yes
 
     - name: output facts to terminal window
       debug:
